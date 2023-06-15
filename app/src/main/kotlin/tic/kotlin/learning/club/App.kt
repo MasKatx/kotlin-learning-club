@@ -73,8 +73,8 @@ class App : RequestHandler<Map<String, String>, Unit> {
   override fun handleRequest(event: Map<String, String>?, context: Context?) = runBlocking {
     // ユーザーの情報を設定
     val id = UUID.randomUUID().toString()
-    val name = "ishida"
-    val age = 20
+    val name = event["name"]
+    val age = event["age"].toIntOrNull()
     val user = User(id, name, age)
 
     println("ユーザーを追加")
