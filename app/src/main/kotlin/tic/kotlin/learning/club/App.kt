@@ -74,7 +74,7 @@ class App : RequestHandler<Map<String, String>, Unit> {
     // ユーザーの情報を設定
     val id = UUID.randomUUID().toString()
     val name = event["name"]
-    val age = event["age"].toIntOrNull()
+    val age = event["age"].toInt()
     val user = User(id, name, age)
 
     println("ユーザーを追加")
