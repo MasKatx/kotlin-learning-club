@@ -8,7 +8,8 @@
 
 plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.8.10"
+    // id("org.jetbrains.kotlin.jvm") version "1.7.10"
+    kotlin("jvm") version "1.8.21"
 
     // Apply the application plugin to add support for building a CLI application in Java.
     application
@@ -23,9 +24,10 @@ dependencies {
     implementation("aws.sdk.kotlin:dynamodb:0.18.0-beta")
     implementation("aws.sdk.kotlin:lambda:0.18.0-beta")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.10")
+    implementation ("com.amazonaws:aws-lambda-java-core:1.2.2")
 
-    implementation("org.slf4j:slf4j-simple:1.7.26")
-    implementation(kotlin("stdlib"))
+    // implementation("org.slf4j:slf4j-simple:1.7.26")
+    // implementation(kotlin("stdlib"))
 
     // Use the Kotlin JUnit 5 integration.
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
