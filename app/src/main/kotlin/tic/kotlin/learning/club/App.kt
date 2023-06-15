@@ -71,10 +71,11 @@ val utils = Utils()
 
 class App : RequestHandler<Map<String, String>, Unit> {
   override fun handleRequest(event: Map<String, String>?, context: Context?) = runBlocking {
+    if (event == null) {throw Exception("event is null")}
     // ユーザーの情報を設定
     val id = UUID.randomUUID().toString()
-    val name = event["name"]
-    val age = event["age"].toInt()
+    val name = if (event["name"] != null) {event["name"]!!} else {throw Exception("name is null")}
+    val age = if (event["age"] != null) {event["age"]!!.toInt()} else {throw Exception("age is null")}
     val user = User(id, name, age)
 
     println("ユーザーを追加")
