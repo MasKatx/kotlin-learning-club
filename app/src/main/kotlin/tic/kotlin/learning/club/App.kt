@@ -13,6 +13,9 @@ import kotlin.reflect.*
 import kotlin.reflect.full.*
 import kotlinx.coroutines.runBlocking
 
+import com.google.gson.Gson
+import com.google.gson.JsonParser
+
 // https://sdk.amazonaws.com/kotlin/api/latest/dynamodb/index.html
 // https://docs.aws.amazon.com/ja_jp/sdk-for-kotlin/latest/developer-guide/kotlin_dynamodb_code_examples.html
 
@@ -69,8 +72,9 @@ val TABLE_NAME = "kotlin-learning"
 // インスタンス化
 val utils = Utils()
 
-class App : RequestHandler<Map<String, String>, Unit> {
-  override fun handleRequest(event: Map<String, String>?, context: Context?) = runBlocking {
+class App : RequestHandler<Map<String, String>, String> {
+  override fun handleRequest(event: Map<String, String>?, context: Context?): String{
+    val res = runBlocking {
     if (event == null) {throw Exception("event is null")}
     // ユーザーの情報を設定
     val id = UUID.randomUUID().toString()
@@ -93,6 +97,9 @@ class App : RequestHandler<Map<String, String>, Unit> {
     println("年齢で絞り込み")
     searchByAge(20)
     println("取得完了\n")
+    user
+    }
+    return Gson().toJson(res)
   }
 
   suspend fun addUser(user: User) {

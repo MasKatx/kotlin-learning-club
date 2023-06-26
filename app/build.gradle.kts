@@ -10,6 +10,7 @@ plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
     // id("org.jetbrains.kotlin.jvm") version "1.7.10"
     kotlin("jvm") version "1.8.21"
+    kotlin("plugin.serialization") version "1.8.21"
 
     // Apply the application plugin to add support for building a CLI application in Java.
     application
@@ -37,6 +38,8 @@ dependencies {
 
     // This dependency is used by the application.
     implementation("com.google.guava:guava:31.1-jre")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0-RC")
+    implementation ("com.google.code.gson:gson:2.8.6")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
